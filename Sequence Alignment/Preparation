@@ -1,0 +1,44 @@
+Preparation 1: Install software
+1.1 Install miniconda
+Conda is an app store for both Linux and Mac. While the system’s default app installers including both the “apt-get” in Ubuntu and “Yum” in RedHat require administrator (root) privilege, Conda installs apps in your home folder and solves the libraries dependencies automatically. One thing to note is, in Conda, not all apps that are available in Linux would also be available in Mac, so if Conda can’t help you with installing a tool in MacOS, you are always welcomed to use the CS academy server or install a virtual Linux with VirtualBox for Mac.
+To install Conda, please follow the guide in this page. If you use the CS academy server, you can use the below commands:
+• curl https://repo.continuum.io/miniconda/Miniconda2-latest-Linux- x86_64.sh > Miniconda2-latest-Linux-x86_64.sh
+• sh Miniconda2-latest-Linux-x86_64.sh
+Use the down arrow to go through the license, type “yes” to agree with the license. When being prompt for the installation path, press enter to install Conda to your home folder by default. When being asked “Do you wish the installer to prepend the Miniconda2 install location to PATH in your ...”, type “yes” to agree. After the installation, run command “source ~/.bashrc” to load the updated environment variable “$PATH”. Now you should be able to use conda by using the command “conda”.
+ 
+1.2 Add the “bioconda” channel to Conda
+“bioconda” is one of the many available Conda channels. It hosts most of the commonly used bioinformatics tools. Please use the following commands to add the “bioconda” channel to Conda:
+• conda config --add channels defaults
+• conda config --add channels conda-forge
+• conda config --add channels bioconda
+For more details of bioconda, please visit this page. 1.3 Install BWA
+• conda install -c bioconda bwa
+1.4 Install samtools
+• conda install -c bioconda samtools
+Go through this samtools tutorial and go back later when needed
+1.5 Install IGV
+Complete the IGV tutorial written by Obi Griffith.
+For both the Linux and Mac user, please install IGV by following the instructions here. Note that IGV requires Java 8, thus for the CS academy server users, please finish the following steps to install Java 8 to your home folder:
+• cd~
+• curl http://www.bio8.cs.hku.hk/comp3353/jre-8u181-linux-x64.tar.gz |
+tar -zxf -
+Now you should be able to see a folder named jre1.8.0_181 in your home folder. Then, add the folder to the $PATH environment variable and make it permanent by writing the command into “~/.bashrc” (a program that will be run automatically every time you open a new terminal). Please read all the steps below carefully before you can proceed:
+• cat >> ~/.bashrc # Press enter the command will run but no prompt will appear because the command is waiting for your input to be append to the file, notice that I used two redirection symbols, it means append to the end of the file, while one symbols means overwrite the file entirely, please don’t make a mistake!
+    
+Now copy the following one line from and paste to the terminal
+export PATH="~/jre1.8.0_181/bin:$PATH"
+Press Enter, then press Ctrl+D. Now your “~/.bashrc” file should be appended with the new line you’ve just pasted. You can give it a check by using the tail command.
+To activate you changes, close the terminal and open again, or, use the following command:
+• source ~/.bashrc
+Finally, check if the current Java version is what we want by command:
+• java -version
+You should see Java version “1.8.0_181”.
+Download IGV
+• cd~
+• curl
+      http://data.broadinstitute.org/igv/projects/downloads/2.4/IGV_2.4.14.zi
+      p >IGV_2.4.14.zip
+• unzip IGV_2.4.14.zip
+• cd IGV_2.4.14
+Run IGV
+java -Xmx1500m -jar lib/igv.jar
